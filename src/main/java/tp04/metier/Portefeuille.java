@@ -49,23 +49,34 @@ public class Portefeuille {
     }
     
     public void acheter(Action a, int q) {
-        if (this.mapLignes.containsKey(a) == false) {
-            this.mapLignes.put(a, new LignePortefeuille(a, q));
-        } else {
-            this.mapLignes.get(a).setQte(this.mapLignes.get(a).getQte() + q);
-        }
+    if (q <= 0) {
+        throw new IllegalArgumentException("La quantité doit être positive.");
+    }
+
+    if (this.mapLignes.containsKey(a) == false) {
+        this.mapLignes.put(a, new LignePortefeuille(a, q));
+    } else {
+        this.mapLignes.get(a).setQte(this.mapLignes.get(a).getQte() + q);
+    }
     }
 
     public void vendre(Action a, int q) {
-        if (this.mapLignes.containsKey(a) == true) {
-            if (this.mapLignes.get(a).getQte() > q) {
-                this.mapLignes.get(a).setQte(this.mapLignes.get(a).getQte() - q);
-            } else if (this.mapLignes.get(a).getQte() == q) {
-                this.mapLignes.remove(a);
-            }
-        }        
+    if (q <= 0) {
+        throw new IllegalArgumentException("La quantité doit être positive.");
     }
-    
+
+    if (this.mapLignes.containsKey(a) == true) {
+        int qteDisponible = this.mapLignes.get(a).getQte();
+        if (qteDisponible >= q) {
+            this.mapLignes.get(a).setQte(qteDisponible - q);
+        } else {
+            throw new IllegalArgumentException("La quantité disponible est inférieure à la quantité à vendre.");
+        }
+    } else {
+        throw new IllegalArgumentException("L'action n'est pas présente dans le portefeuille.");
+    }
+    }
+
     public String toString() {
         return this.mapLignes.toString();
     }
