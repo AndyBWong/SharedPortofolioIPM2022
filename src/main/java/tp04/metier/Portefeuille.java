@@ -50,7 +50,7 @@ public class Portefeuille {
     
     public void acheter(Action a, int q) {
     if (q <= 0) {
-        throw new IllegalArgumentException("La quantité doit être positivee.");
+        throw new IllegalArgumentException("La quantité doit être positive.");
     }
 
     if (this.mapLignes.containsKey(a) == false) {
