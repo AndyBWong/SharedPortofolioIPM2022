@@ -6,7 +6,8 @@
 
 package tp04.metier;
 
-import java.util.HashMap;
+
+import java.util.Hashtable;
 import java.util.Map;
 
 /**
@@ -14,29 +15,46 @@ import java.util.Map;
  * @author perussel
  */
 public class ActionComposee extends Action {
-    // attribut lien
-    Map<ActionSimple, Float> mapPanier;
-
-    public ActionComposee(String libelle) {
+    //region attribut
+    Hashtable<ActionSimple,Pourcentage>composition;
+    //endregion
+    //regionconstructor
+    public ActionComposee(String libelle){
         super(libelle);
-        this.mapPanier = new HashMap();
+        this.composition = new Hashtable<ActionSimple,Pourcentage>();
     }
-    
-    public void enrgComposition(ActionSimple as, float pourcentage) {
-        this.mapPanier.put(as, pourcentage);
+    //endregion
+    //region methods
+    @Override
+    public float getValeur(Jour jour) {
+        float valeurComposition = 0;
+        float sommeValeurCompetition = 0;
+        for (Map.Entry<ActionSimple,Pourcentage>compositionChoisi:composition.entrySet()) {
+            valeurComposition = compositionChoisi.getKey().getValeur(jour);
+            sommeValeurCompetition += valeurComposition;
+        }
+        System.out.println(sommeValeurCompetition);
+        return sommeValeurCompetition;
     }
 
-    @Override
-    public float valeur(Jour j) {
-        float valeur;
-        
-        valeur = 0;
-        for(ActionSimple as : this.mapPanier.keySet()) {
-            valeur = valeur + (as.valeur(j) * this.mapPanier.get(as));
+    public void enregistrerComp(ActionSimple action, float pourcentage){
+        Pourcentage pourcentageAMettre = new Pourcentage(pourcentage);
+        float sommeComposition = 0;
+        if (pourcentage<=100 && pourcentage>=0){
+        for (Map.Entry<ActionSimple,Pourcentage>compositionChoisi:composition.entrySet()) {
+            System.out.println(compositionChoisi.getKey() + " " + compositionChoisi.getValue());
+            sommeComposition += compositionChoisi.getValue().getPourcentage();
+
         }
-        
-        return valeur;
+        if ((sommeComposition + pourcentage)<=100){
+            this.composition.put(action,pourcentageAMettre);
+        }
+        else{
+            System.out.println("La somme est au dessus de 100 ");
+        }
+        }else{
+            System.out.println("La somme est incorrect ");
+        }
     }
-    
-    
+    //endregion
 }

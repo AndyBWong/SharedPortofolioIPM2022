@@ -6,59 +6,49 @@
 
 package tp04.metier;
 
-import java.util.HashMap;
-import java.util.Map;
+
+
+import java.util.Hashtable;
+import tp04.metier.Cours;
+import tp04.metier.Jour;
 
 /**
  *
  * @author perussel
  */
 public class ActionSimple extends Action {
-
-    // attribut lien
-    private Map<Jour, Cours> mapCours;
-    
-    // constructeur
-    public ActionSimple(String libelle) {
-        // Action simple initialisée comme 1 action
+   //region attribut
+Hashtable<Jour,Cours>composerActionSimple;
+    //endregion
+    //region constructor
+    public ActionSimple(String libelle){
         super(libelle);
-        // init spécifique
-        this.mapCours = new HashMap();
+        this.composerActionSimple = new Hashtable<Jour, Cours>();
+
     }
-    
-    // enrg possible si pas de cours pour ce jour
-    public void enrgCours(Jour j, float v) {
-        if(this.mapCours.containsKey(j) == false)
-            this.mapCours.put(j, new Cours(j, v));
-    }
-    
+    //endregion
+    //region methods
     @Override
-    public float valeur(Jour j) {
-        if(this.mapCours.containsKey(j) == true)
-            return this.mapCours.get(j).getValeur();
-        else 
-            return 0; // definition d'une constante possible
-    }
-  
-    // encapsulation de la définition de la classe Cours
-    private class Cours {
-        
-        private Jour jour;
+    public float getValeur(Jour jour) {
+        try{
+            System.out.println("voici les cours pour ce jour "+composerActionSimple.get(jour).getValeur());
+            return this.composerActionSimple.get(jour).getValeur();
 
-        private float valeur;
-
-        public float getValeur() {
-            return valeur;
         }
-        
-        public Jour getJour() {
-            return jour;
-        }
-
-        public Cours(Jour jour, float valeur) {
-            this.jour = jour;
-            this.valeur = valeur;
+        catch (Exception e){
+            System.out.println("Aucune action a ce jour");
+            return -1;
         }
 
     }
+
+    public void enregistrerCours(Jour jour, float valeur){
+        if (!this.composerActionSimple.containsKey(jour)) {
+            Cours coursPrecis = new Cours(valeur);
+            this.composerActionSimple.put(jour,coursPrecis);
+        }
+
+    }
+    //endregion
+
 }

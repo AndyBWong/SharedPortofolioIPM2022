@@ -11,58 +11,26 @@ package tp04.metier;
  * @author perussel
  */
 public class Jour {
-
+    //region attribut
     private int annee;
-    private int noJour;
+    private int numJour;
+    //endregion
 
-    /**
-     * Get the value of annee
-     *
-     * @return the value of annee
-     */
+    //region constructor
+    public Jour(int annee, int numJour){
+        this.annee = annee;
+        this.numJour = numJour;
+    }
+    //endregion
+
+    //region methods
     public int getAnnee() {
         return annee;
     }
 
-
-    /**
-     * Get the value of noJour
-     *
-     * @return the value of noJour
-     */
-    public int getNoJour() {
-        return noJour;
+    public int getNumJour() {
+        return numJour;
     }
-
-    public Jour(int annee, int noJour) {
-        this.annee = annee;
-        this.noJour = noJour;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 61 * hash + this.annee;
-        hash = 61 * hash + this.noJour;
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Jour other = (Jour) obj;
-        if (this.annee != other.annee) {
-            return false;
-        }
-        if (this.noJour != other.noJour) {
-            return false;
-        }
-        return true;
-    }
+    //endregion
   
 }

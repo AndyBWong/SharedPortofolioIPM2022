@@ -6,7 +6,6 @@ package tp04.metier;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 
 /**
  *
@@ -14,6 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 public class ActionSimpleTest {
     private static final String EXPECTED_LIBELLE = "Toto";
+    private Jour jour = new Jour(2019,3);
 
     public ActionSimpleTest() {
     }
@@ -25,5 +25,4 @@ public class ActionSimpleTest {
         
         Assertions.assertSame(EXPECTED_LIBELLE, result, "The label must be the same as the one used at creation time.");
     }
-    
 }

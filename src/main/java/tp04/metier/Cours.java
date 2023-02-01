@@ -7,9 +7,21 @@
 package tp04.metier;
 
 /**
- *
+ * Cours d'une action.
  * @author perussel
  */
 public class Cours {
-    
+    //region attribut
+float valeur;
+//endregion
+    //region constructor
+public Cours(float valeur){
+    this.valeur = valeur;
+}
+//endregion
+    //region methods
+    public float getValeur() {
+        return valeur;
+    }
+    //endregion
 }
