@@ -7,7 +7,8 @@
 package tp04.metier;
 
 
-import java.util.Hashtable;
+import java.util.HashMap;
+
 import java.util.Map;
 
 /**
@@ -15,16 +16,23 @@ import java.util.Map;
  * @author perussel
  */
 public class ActionComposee extends Action {
-    //region attribut
-    Hashtable<ActionSimple,Pourcentage>composition;
-    //endregion
-    //regionconstructor
+    /**.
+     * Propriété.
+     */
+    private HashMap<ActionSimple, Pourcentage> composition;
+    /**.
+     * constructeur de l'action composée.
+     * @param libelle.
+     */
     public ActionComposee(String libelle){
         super(libelle);
-        this.composition = new Hashtable<ActionSimple,Pourcentage>();
+        this.composition = new HashMap<ActionSimple,Pourcentage>();
     }
-    //endregion
-    //region methods
+    /**.
+     * Cette méthode retourne la valeur pour un jour donné d'une action composée
+     * @param jour
+     * @return 
+     */
     @Override
     public float getValeur(Jour jour) {
         float valeurComposition = 0;
@@ -36,25 +44,28 @@ public class ActionComposee extends Action {
         System.out.println(sommeValeurCompetition);
         return sommeValeurCompetition;
     }
-
+    /**.
+     *enregistre le pourcentage d'une action composée en fonction d"une action
+     * @param action
+     * @param pourcentage
+     */
     public void enregistrerComp(ActionSimple action, float pourcentage){
         Pourcentage pourcentageAMettre = new Pourcentage(pourcentage);
         float sommeComposition = 0;
-        if (pourcentage<=100 && pourcentage>=0){
-        for (Map.Entry<ActionSimple,Pourcentage>compositionChoisi:composition.entrySet()) {
-            System.out.println(compositionChoisi.getKey() + " " + compositionChoisi.getValue());
-            sommeComposition += compositionChoisi.getValue().getPourcentage();
+        final int maxPourcentage = 100;
+        if (pourcentage <= maxPourcentage && pourcentage >= 0) {
+            for (Map.Entry<ActionSimple,Pourcentage>compositionChoisi:composition.entrySet()) {
+                System.out.println(compositionChoisi.getKey() + " " + compositionChoisi.getValue());
+                sommeComposition += compositionChoisi.getValue().getPourcentage();
 
-        }
-        if ((sommeComposition + pourcentage)<=100){
-            this.composition.put(action,pourcentageAMettre);
-        }
-        else{
-            System.out.println("La somme est au dessus de 100 ");
-        }
-        }else{
+            }
+            if ((sommeComposition + pourcentage) <= maxPourcentage){
+                this.composition.put(action, pourcentageAMettre);
+            } else {
+                System.out.println("La somme est au dessus de 100 ");
+            }
+        } else {
             System.out.println("La somme est incorrect ");
         }
     }
-    //endregion
 }
