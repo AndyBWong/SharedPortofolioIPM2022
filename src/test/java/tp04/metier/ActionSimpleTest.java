@@ -14,6 +14,11 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 public class ActionSimpleTest {
     private static final String EXPECTED_LIBELLE = "Toto";
+    /**
+     * Jour qui pour lequel une action possède un cours.
+     * Antérieur à la date du jour.
+     */
+    private static final Jour jourExistant = new Jour(2022, 1) ;
 
     public ActionSimpleTest() {
     }
@@ -26,4 +31,16 @@ public class ActionSimpleTest {
         Assertions.assertSame(EXPECTED_LIBELLE, result, "The label must be the same as the one used at creation time.");
     }
     
+    /**
+     * Test permettant de vérifier qu'on récupère la bonne valeur d'une action
+     * simple pour un jour donnée.
+     */
+    @Test
+    public void testGetValJourActionSimpleShouldPass() {
+        final ActionSimple as2 = new ActionSimple(EXPECTED_LIBELLE);
+        final float valeurCours = 12f;
+        as2.enregistrerCours(jourExistant, valeurCours);
+        final float result = as2.getValeur(jourExistant);
+        Assertions.assertEquals(valeurCours, result);
+    }
 }

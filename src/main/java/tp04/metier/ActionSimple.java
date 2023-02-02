@@ -8,7 +8,7 @@ package tp04.metier;
 
 
 
-import java.util.Hashtable;
+import java.util.HashMap;
 import tp04.metier.Cours;
 import tp04.metier.Jour;
 
@@ -17,25 +17,30 @@ import tp04.metier.Jour;
  * @author perussel
  */
 public class ActionSimple extends Action {
-   //region attribut
-Hashtable<Jour,Cours>composerActionSimple;
-    //endregion
+   /**
+    * Le cours de l'action en fonction du jour.
+    */
+    private HashMap<Jour, Cours> composerActionSimple;
+
     //region constructor
     public ActionSimple(String libelle){
         super(libelle);
-        this.composerActionSimple = new Hashtable<Jour, Cours>();
-
+        this.composerActionSimple = new HashMap<Jour, Cours>();
     }
-    //endregion
-    //region methods
+
+    /**
+     * Récupère la valeur de action simple pour un jour donné.
+     * @param jour Jour pour lequel on cherche la valeur de l'action simple
+     * @return Le montant de la valeur de l'action pour le jour donné.
+     */
     @Override
     public float getValeur(Jour jour) {
-        try{
-            System.out.println("voici les cours pour ce jour "+composerActionSimple.get(jour).getValeur());
-            return this.composerActionSimple.get(jour).getValeur();
-
-        }
-        catch (Exception e){
+        float valeurAction;
+        try {
+            valeurAction = this.composerActionSimple.get(jour).getValeur();
+            System.out.println("voici les cours pour ce jour " + valeurAction);
+            return valeurAction;
+        } catch (Exception e) {
             System.out.println("Aucune action a ce jour");
             return -1;
         }
