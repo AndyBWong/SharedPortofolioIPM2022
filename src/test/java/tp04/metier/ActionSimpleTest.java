@@ -43,4 +43,12 @@ public class ActionSimpleTest {
         final float result = as2.getValeur(jourExistant);
         Assertions.assertEquals(valeurCours, result);
     }
+    @Test
+    public void testGetValJourActionSimpleCatchGetError(){
+        final ActionSimple as3 = new ActionSimple(EXPECTED_LIBELLE);
+        final float valeurCours = -1f;
+        final Jour jourNonExistant = new Jour(2019, 2);
+        final float result = as3.getValeur(jourNonExistant);
+        Assertions.assertEquals(valeurCours, result);
+    }
 }

@@ -9,8 +9,6 @@ package tp04.metier;
 
 
 import java.util.HashMap;
-import tp04.metier.Cours;
-import tp04.metier.Jour;
 
 /**
  *
@@ -36,11 +34,11 @@ public class ActionSimple extends Action {
     @Override
     public float getValeur(Jour jour) {
         float valeurAction;
-        try {
+        if (this.composerActionSimple.containsKey(jour)) {
             valeurAction = this.composerActionSimple.get(jour).getValeur();
             System.out.println("voici les cours pour ce jour " + valeurAction);
             return valeurAction;
-        } catch (Exception e) {
+        } else {
             System.out.println("Aucune action a ce jour");
             return -1;
         }
