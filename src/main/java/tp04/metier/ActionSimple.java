@@ -45,6 +45,7 @@ public class ActionSimple extends Action {
         if (!this.composerActionSimple.containsKey(jour)) {
             Cours coursPrecis = new Cours(valeur);
             this.composerActionSimple.put(jour,coursPrecis);
+            System.out.println("L'action" + libelle + "a la date" + jour + "avec comme valeur" + valeur + "a bien été enregistrer");
         }
 
     }
