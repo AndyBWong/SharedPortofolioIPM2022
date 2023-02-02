@@ -30,13 +30,13 @@ public class Run {
     actionComposee.enregistrerComp(actionSimple2, 50f);
     actionComposee.getValeur(jour3);
 
-    //region Création d'un portefeuille
-    Portefeuille portefeuille1 = new Portefeuille();
-    portefeuille1.acheterAction(actionSimple1,30);
-    portefeuille1.acheterAction(actionSimple1,30);
-    portefeuille1.vendreAction(actionSimple1,10);
-    System.out.println(portefeuille1.getValeur(jour1));
-    //endregion
+    //Creation d'un portefeuille
+    Portefeuille portefeuille2 = new Portefeuille();    
+    portefeuille2.acheterAction(actionSimple1, 10);
+    portefeuille2.acheterAction(actionSimple2, 20);
+    portefeuille2.vendreAction(actionSimple1, 10);
+    portefeuille2.vendreAction(actionSimple2, 10);
+    System.out.println(portefeuille2.getValeur(jour1));
  
     }
 
