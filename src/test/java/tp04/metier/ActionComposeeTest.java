@@ -28,16 +28,12 @@ public class ActionComposeeTest {
      * Antérieur à la date du jour.
      */
     private static final Jour jourExistant = new Jour(2022, 1) ;
-    
     /**
      * Constructeur de la classe de test.
      */
-    public ActionComposeeTest(){
-        
-    }
-
+    public ActionComposeeTest() { }
     /**
-     * Vérifie si la valeur récupéré d'une action composée est correcte.
+     * Vérifie si la valeur récupérée d'une action composée est correcte.
      */
     @Test
     public void TestGetValActionCompShouldPass() {
@@ -54,6 +50,49 @@ public class ActionComposeeTest {
         ac1 = new ActionComposee("ActionComp");
         ac1.enregistrerComp(as1, pourcentage);
         ac1.enregistrerComp(as2, pourcentage);
+        result = ac1.getValeur(jourExistant);
+        Assertions.assertEquals(expectedValeur, result);
+    }
+    
+    /**
+     * Verifie si la valeur récupérée d'une action composée
+     * est fausse par rapport à la somme du pourcentage.
+     */
+    @Test
+    public void TestGetValActionCompSommePourcentageShouldFail() {
+        final ActionSimple as1 = new ActionSimple("Action1");
+        final ActionSimple as2 = new ActionSimple("Action2");
+        final float valeur = 10f;
+        final float expectedValeur = valeur * 2;
+        final int pourcentage = 60;
+        final ActionComposee ac1;
+        final float result;
+
+        as1.enregistrerCours(jourExistant, valeur);
+        as2.enregistrerCours(jourExistant, valeur);
+        ac1 = new ActionComposee("ActionComp");
+        ac1.enregistrerComp(as1, pourcentage);
+        ac1.enregistrerComp(as2, pourcentage);
+        result = ac1.getValeur(jourExistant);
+        Assertions.assertNotEquals(expectedValeur, result);
+    }
+
+    /**
+     * Verifie si la valeur récupérée d'une action composée
+     * est fausse par rapport au pourcentage.
+     */
+    @Test
+    public void TestGetValActionCompPourcentageShouldFail() {
+        final ActionSimple as1 = new ActionSimple("Action1");
+        final float valeur = 10f;
+        final float expectedValeur = 0f;
+        final int pourcentage = 101;
+        final ActionComposee ac1;
+        final float result;
+
+        as1.enregistrerCours(jourExistant, valeur);
+        ac1 = new ActionComposee("ActionComp");
+        ac1.enregistrerComp(as1, pourcentage);
         result = ac1.getValeur(jourExistant);
         Assertions.assertEquals(expectedValeur, result);
     }

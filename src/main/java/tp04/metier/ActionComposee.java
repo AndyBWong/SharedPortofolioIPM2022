@@ -54,21 +54,22 @@ public class ActionComposee extends Action {
      */
     public void enregistrerComp(ActionSimple action, float pourcentage){
         Pourcentage pourcentageAMettre = new Pourcentage(pourcentage);
-        float sommeComposition = 0;
+        float sommePourcentageComposition = 0;
         final int maxPourcentage = 100;
         if (pourcentage <= maxPourcentage && pourcentage >= 0) {
             for (Map.Entry<ActionSimple,Pourcentage>compositionChoisi:composition.entrySet()) {
                 System.out.println(compositionChoisi.getKey() + " " + compositionChoisi.getValue());
-                sommeComposition += compositionChoisi.getValue().getPourcentage();
+                sommePourcentageComposition += compositionChoisi.getValue().getPourcentage();
 
             }
-            if ((sommeComposition + pourcentage) <= maxPourcentage){
+            if ((sommePourcentageComposition + pourcentage) <= maxPourcentage){
                 this.composition.put(action, pourcentageAMettre);
             } else {
-                System.out.println("La somme est au dessus de 100 ");
+                System.out.println("La somme du pourcentage"
+                        + " est au dessus de 100 ");
             }
         } else {
-            System.out.println("La somme est incorrect ");
+            System.out.println("Le pourcentage est incorrect ");
         }
     }
 }
