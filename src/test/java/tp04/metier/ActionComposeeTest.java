@@ -16,7 +16,7 @@
 package tp04.metier;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  *
@@ -40,7 +40,7 @@ public class ActionComposeeTest {
      * Vérifie si la valeur récupéré d'une action composée est correcte.
      */
     @Test
-    public static void TestGetValActionCompShouldPass() {
+    public void TestGetValActionCompShouldPass() {
         final ActionSimple as1 = new ActionSimple("Action1");
         final ActionSimple as2 = new ActionSimple("Action2");
         final float valeur = 10f;
