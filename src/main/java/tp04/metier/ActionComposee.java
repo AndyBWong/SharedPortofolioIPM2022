@@ -28,22 +28,26 @@ public class ActionComposee extends Action {
         super(libelle);
         this.composition = new HashMap<ActionSimple,Pourcentage>();
     }
-    /**.
-     * Cette méthode retourne la valeur pour un jour donné d'une action composée
-     * @param jour
-     * @return 
+    
+    /**
+     * Cette méthode retourne la valeur pour un jour donné
+     * d'une action composée.
+     * @param jour Jour pour lequel on veut connaître la valeur
+     * @return Valeur de l'action composée
      */
     @Override
     public float getValeur(Jour jour) {
         float valeurComposition = 0;
-        float sommeValeurCompetition = 0;
-        for (Map.Entry<ActionSimple,Pourcentage>compositionChoisi:composition.entrySet()) {
+        float sommeValeurCompo = 0;
+        for (Map.Entry<ActionSimple, Pourcentage> compositionChoisi
+                : composition.entrySet()) {
             valeurComposition = compositionChoisi.getKey().getValeur(jour);
-            sommeValeurCompetition += valeurComposition;
+            sommeValeurCompo += valeurComposition;
         }
-        System.out.println(sommeValeurCompetition);
-        return sommeValeurCompetition;
+        System.out.println(sommeValeurCompo);
+        return sommeValeurCompo;
     }
+
     /**.
      *enregistre le pourcentage d'une action composée en fonction d"une action
      * @param action
