@@ -81,7 +81,7 @@ public class PortefeuilleTest {
         p1.acheterAction(as1, q1.getQuantite());
         p1.acheterAction(as2, q2.getQuantite());
         final boolean result = p1.getPossederAction()
-                .equals(p1.consulterActions());
+            .equals(p1.consulterActions());
         Assertions.assertTrue(result, "The HashMap should be the same ");
     }
 }

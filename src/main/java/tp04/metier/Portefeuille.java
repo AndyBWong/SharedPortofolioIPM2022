@@ -43,7 +43,7 @@ public class Portefeuille {
             this.possederAction.put(action,new Quantite(quantite));
         }
         
-        // je vais acheter une quantite que je vais signifier pour cela je vais add dans hastable
+        
         
     }
     public void vendreAction(Action action,int quantiteASoustraire){
