@@ -49,7 +49,7 @@ public class PortefeuilleTest {
         Assertions.assertEquals(EXPECTED_VALEUR, +
                 result, "The Value should be the same.");
     }
-    /**
+    /**.
      * Test de consulterActions de Portefeuille
      */
     public void testConsulterActions() {
