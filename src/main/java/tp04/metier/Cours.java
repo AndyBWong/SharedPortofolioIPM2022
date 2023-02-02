@@ -8,7 +8,6 @@ package tp04.metier;
 
 /**
  * Cours d'une action.
- * @author perussel
  */
 public class Cours {
     //region attribut
