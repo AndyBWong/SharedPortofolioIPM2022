@@ -18,7 +18,7 @@ public class ActionSimpleTest {
      * Jour qui pour lequel une action possède un cours.
      * Antérieur à la date du jour.
      */
-    private static final Jour jourExistant = new Jour(2022, 1) ;
+    private static final Jour jourExistant = new Jour(2022,7, 1) ;
 
     public ActionSimpleTest() {
     }
@@ -30,7 +30,11 @@ public class ActionSimpleTest {
         
         Assertions.assertSame(EXPECTED_LIBELLE, result, "The label must be the same as the one used at creation time.");
     }
-    
+    @Test
+    public void testenregistrerCoursShouldPass() {
+        final ActionSimple as2 = new ActionSimple(EXPECTED_LIBELLE);
+        final float valeurCours = 12f;
+        as2.enregistrerCours(jourExistant, valeurCours);}
     /**
      * Test permettant de vérifier qu'on récupère la bonne valeur d'une action
      * simple pour un jour donnée.
@@ -47,7 +51,7 @@ public class ActionSimpleTest {
     public void testGetValJourActionSimpleCatchGetError(){
         final ActionSimple as3 = new ActionSimple(EXPECTED_LIBELLE);
         final float valeurCours = -1f;
-        final Jour jourNonExistant = new Jour(2019, 2);
+        final Jour jourNonExistant = new Jour(2019,6, 2);
         final float result = as3.getValeur(jourNonExistant);
         Assertions.assertEquals(valeurCours, result);
     }
