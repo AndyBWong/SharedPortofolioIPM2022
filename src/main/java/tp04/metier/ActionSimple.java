@@ -20,8 +20,13 @@ public class ActionSimple extends Action {
         super(libelle);
         this.composerActionSimple = new HashMap<Jour, Cours>();
     }
-
     /**
+     * Recuperer la composition d'une action simple
+     */
+    public HashMap<Jour, Cours> getComposerActionSimple() {    
+        return composerActionSimple;
+    }
+    /**.
      * Récupère la valeur de action simple pour un jour donné.
      * @param jour Jour pour lequel on cherche la valeur de l'action simple
      * @return Le montant de la valeur de l'action pour le jour donné.
@@ -37,16 +42,16 @@ public class ActionSimple extends Action {
             System.out.println("Aucune action a ce jour");
             return -1;
         }
-
     }
     
     //Enregistrer le cours de l'action selon le jour
-    public void enregistrerCours(Jour jour, float valeur){
+    public HashMap<Jour,Cours> enregistrerCours(Jour jour, float valeur){
+        HashMap<Jour, Cours> AS = new HashMap<Jour, Cours>();
         if (!this.composerActionSimple.containsKey(jour)) {
             Cours coursPrecis = new Cours(valeur);
             this.composerActionSimple.put(jour,coursPrecis);
         }
-
+        return AS;
     }
     //endregion
 

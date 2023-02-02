@@ -13,12 +13,26 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author andyb
  */
 public class ActionSimpleTest {
-    private static final String EXPECTED_LIBELLE = "Toto";
+    private static final String EXPECTED_LIBELLE = "France 5";
     /**
      * Jour qui pour lequel une action possède un cours.
      * Antérieur à la date du jour.
      */
     private static final Jour jourExistant = new Jour(2022, 1) ;
+    
+    /**
+     * Année de l'Action simple
+     */
+    private static final int  EXPECTED_ANNEE = 2022;
+    
+    /**
+     * Jour de l'Action simple
+     */
+    private static final int  EXPECTED_JOUR = 136;
+    /**
+     * Valeur de l'Action Simple
+     */
+    private static final int  EXPECTED_VALEUR = 136;
 
     public ActionSimpleTest() {
     }
@@ -30,9 +44,8 @@ public class ActionSimpleTest {
         
         Assertions.assertSame(EXPECTED_LIBELLE, result, "The label must be the same as the one used at creation time.");
     }
-    
-    /**
-     * Test permettant de vérifier qu'on récupère la bonne valeur d'une action
+     /**
+     * Test permettant de vérifier qu'on récupère la bonne valeur d'une action.
      * simple pour un jour donnée.
      */
     @Test
@@ -51,4 +64,16 @@ public class ActionSimpleTest {
         final float result = as3.getValeur(jourNonExistant);
         Assertions.assertEquals(valeurCours, result);
     }
+    /**
+     * Test permettant d'enregistrer un cours a une action simple
+     */
+    @Test
+    public void testenregistrerCours() {
+        final Jour j1 = new Jour(EXPECTED_ANNEE,EXPECTED_JOUR);
+        final ActionSimple as1 = new ActionSimple(EXPECTED_LIBELLE);
+        as1.enregistrerCours(j1, EXPECTED_VALEUR);
+        final boolean result = as1.enregistrerCours(j1, EXPECTED_VALEUR)
+            .equals(as1.getComposerActionSimple());
+        Assertions.assertTrue(result, "The HashMap should be the same ");
+     }
 }
