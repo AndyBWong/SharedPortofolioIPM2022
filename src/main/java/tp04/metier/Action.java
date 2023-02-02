@@ -10,7 +10,7 @@ import java.util.Objects;
 
 /**
  *
- * @author perussel
+ * @author perussell
  */
 public abstract class Action {
     //region attribut

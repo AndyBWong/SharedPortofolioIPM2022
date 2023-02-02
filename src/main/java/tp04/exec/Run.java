@@ -14,9 +14,9 @@ import tp04.metier.Portefeuille;
 public class Run {
 
     public static void main(String[] args) {
-            Jour jour1 = new Jour(2022, 1);
-    Jour jour2 = new Jour(2022, 2);
-    Jour jour3 = new Jour(2022, 3);
+            Jour jour1 = new Jour(2022,2, 1);
+    Jour jour2 = new Jour(2022,2, 2);
+    Jour jour3 = new Jour(2022,2, 3);
     // Actions simples
     ActionSimple actionSimple1 = new ActionSimple("FranceTelevision");
     ActionSimple actionSimple2 = new ActionSimple("TF1");

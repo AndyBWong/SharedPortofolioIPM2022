@@ -6,24 +6,22 @@
 
 package tp04.metier;
 
-/**
- *
- * @author perussel
- */
 public class Jour {
-    //region attribut
+    //attributs
     private int annee;
     private int numJour;
+    private int mois;
     //endregion
 
-    //region constructor
-    public Jour(int annee, int numJour){
+    //constructeur
+    public Jour(int annee,int mois, int numJour){
         this.annee = annee;
         this.numJour = numJour;
+        this.mois = mois;
     }
-    //endregion
+    
 
-    //region methods
+    //getters
     public int getAnnee() {
         return annee;
     }
@@ -31,6 +29,16 @@ public class Jour {
     public int getNumJour() {
         return numJour;
     }
-    //endregion
+    
+    public int getMois() {
+        return mois;
+    }
+    
+    
+
+    @Override
+    public String toString() {
+        return "Jour{" + "annee=" + annee + ", numJour=" + numJour + ", mois=" + mois + '}';
+    }
   
 }
