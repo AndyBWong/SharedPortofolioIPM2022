@@ -15,6 +15,7 @@
 */
 package tp04.metier;
 
+import java.util.HashMap;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -24,12 +25,30 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author corin
  */
 public class PortefeuilleTest {
-    /* Constante de la valeur attendu */
+    /**.
+     * Constante de la valeur attendu
+     */
     private static final float  EXPECTED_VALEUR = 20;
-    /* Constante de la Valeur de l'ActionSimple */
-    private static final float  VALEUR_AS= 10;
-    private static final float  EXPECTED_AS1= 10;
-    private static final float  EXPECTED_AS2= 10;
+    /**.
+     * Constante de la valeur de l'action simple
+     */
+    private static final float  VALEUR_AS = 10;
+    /**.
+     * Constante du libelle de l'as attendu
+     */
+    private static final String  EXPECTED_AS1 = "France2";
+    /**.
+     * Constante du libelle de l'as attendu
+     */
+    private static final String  EXPECTED_AS2 = "France3";
+    /**.
+     * Constante de la quantité attendu
+     */
+    private static final int  EXPECTED_Q1 = 2;
+    /**.
+     * Constante de la quantité attendu
+     */
+    private static final int  EXPECTED_Q2 = 5;
     /**.
      * Test de portefeuille
      */
@@ -52,15 +71,17 @@ public class PortefeuilleTest {
     /**.
      * Test de consulterActions de Portefeuille
      */
+    @Test
     public void testConsulterActions() {
         final Portefeuille p1 = new Portefeuille();
-        final ActionSimple as1 = new ActionSimple("AS1");
-        final ActionSimple as2 = new ActionSimple("AS2");
-        p1.acheterAction(as1, 2);
-        p1.acheterAction(as2, 5);
-        
-        
-        
-        
+        final ActionSimple as1 = new ActionSimple(EXPECTED_AS1);
+        final ActionSimple as2 = new ActionSimple(EXPECTED_AS2);
+        final Quantite q1 = new Quantite(EXPECTED_Q1);
+        final Quantite q2 = new Quantite(EXPECTED_Q2);
+        p1.acheterAction(as1, q1.getQuantite());
+        p1.acheterAction(as2, q2.getQuantite());
+        final boolean result = p1.getPossederAction()
+                .equals(p1.consulterActions());
+        Assertions.assertTrue(result, "The HashMap should be the same ");
     }
 }
