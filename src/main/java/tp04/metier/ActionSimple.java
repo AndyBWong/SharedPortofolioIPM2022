@@ -6,21 +6,16 @@
 
 package tp04.metier;
 
-
-
 import java.util.HashMap;
 
-/**
- *
- * @author perussel
- */
+
 public class ActionSimple extends Action {
    /**
     * Le cours de l'action en fonction du jour.
     */
     private HashMap<Jour, Cours> composerActionSimple;
 
-    //region constructor
+    //constructor
     public ActionSimple(String libelle){
         super(libelle);
         this.composerActionSimple = new HashMap<Jour, Cours>();
@@ -44,8 +39,9 @@ public class ActionSimple extends Action {
         }
 
     }
-    /**.
-     *enregistre une action simple en fonction du jour
+
+    /**
+     *enregistre une action simple en fonction du jour.
      * et de la valeur donnée pour ce jour.
      * @param jour
      * @param valeur 
@@ -55,8 +51,5 @@ public class ActionSimple extends Action {
             Cours coursPrecis = new Cours(valeur);
             this.composerActionSimple.put(jour,coursPrecis);
         }
-
     }
-    //endregion
-
 }
