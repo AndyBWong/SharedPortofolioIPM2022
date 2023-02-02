@@ -61,7 +61,7 @@ public class PortefeuilleTest {
     public void testGetValeur() {
         final Portefeuille p1 = new Portefeuille();
         final ActionSimple as1 = new ActionSimple("AS1");
-        final Jour j1 = new Jour(2000, 02);
+        final Jour j1 = new Jour(2000,4, 02);
         as1.enregistrerCours(j1, VALEUR_AS);
         p1.acheterAction(as1, 2);
         final float result = p1.getValeur(j1);
