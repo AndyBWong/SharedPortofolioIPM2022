@@ -18,11 +18,11 @@ import java.util.Iterator;
 public class Portefeuille {
     
 //region attribut
-protected Hashtable<Action,Quantite>possederAction;
+protected HashMap<Action,Quantite>possederAction;
     //endregion
     //region constructor
 public Portefeuille(){
-    this.possederAction = new Hashtable<Action, Quantite>();
+    this.possederAction = new HashMap<Action, Quantite>();
 }
     //endregion
     //region methods
@@ -55,14 +55,17 @@ public Collection obtenirToutesLesActions(){
     return this.possederAction.values();
 }
 
-public float getValeur(Jour jour){
-    float valeurAction = 0;
-
-   // boucle
-    for (Action action: possederAction.keySet()){
-        valeurAction = (this.possederAction.get(action).getQuantite() * action.getValeur(jour));
+/**.
+     * Methode de récupération de la valeur du portefeuille
+     * @param jour : objet jour (Année / Jour)
+     * @return valeurAction : Valeur de l'action
+     */
+    public float getValeur(Jour jour) {
+        float valeurAction = 0;
+        for (Action action: possederAction.keySet()) {
+            valeurAction = (this.possederAction.get(action).getQuantite()
+                    * action.getValeur(jour));
+        }
+        return valeurAction;
     }
-   return valeurAction; // retourner à l'aide du jour qu'on choisi en paramètre la valeur  en return
-}
-//endregion
 }
