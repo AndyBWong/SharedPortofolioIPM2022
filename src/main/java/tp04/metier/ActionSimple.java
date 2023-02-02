@@ -44,7 +44,8 @@ public class ActionSimple extends Action {
         }
 
     }
-
+    
+    //Enregistrer le cours de l'action selon le jour
     public void enregistrerCours(Jour jour, float valeur){
         if (!this.composerActionSimple.containsKey(jour)) {
             Cours coursPrecis = new Cours(valeur);
