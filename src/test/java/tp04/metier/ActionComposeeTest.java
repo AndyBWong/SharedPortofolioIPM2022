@@ -16,7 +16,7 @@
 package tp04.metier;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+
 
 /**
  *
@@ -32,6 +32,7 @@ public class ActionComposeeTest {
      * Constructeur de la classe de test.
      */
     public ActionComposeeTest() { }
+
     /**
      * Vérifie si la valeur récupérée d'une action composée est correcte.
      */
