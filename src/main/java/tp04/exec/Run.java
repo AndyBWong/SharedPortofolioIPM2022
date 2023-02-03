@@ -38,6 +38,20 @@ public class Run {
     portefeuille2.vendreAction(actionSimple2, 10);
     System.out.println(portefeuille2.getValeur(jour1));
  
+    
+    // Consultation des actions en dessous d'un prix donné
+    float prix = 30.0f;
+    System.out.println("Actions en dessous de " + prix + ":");
+        if (actionSimple1.getValeur(jour2) < prix) {
+            System.out.println("- " + actionSimple1.getLibelle());
+        }
+        if (actionSimple2.getValeur(jour3) < prix) {
+            System.out.println("- " + actionSimple2.getLibelle());
+        }
+        if (actionComposee.getValeur(jour3) < prix) {
+            System.out.println("- " + actionComposee.getLibelle());
+        }
     }
+    
 
 }
