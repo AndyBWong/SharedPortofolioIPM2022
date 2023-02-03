@@ -6,47 +6,63 @@
 package tp04.metier;
 
 import java.util.HashMap;
-import java.util.Map;
 import java.util.Collection;
-import java.util.Hashtable;
-import java.util.Iterator;
+
 
 /**
- *
+ *Classe Portefeuille qui représente un portefeuille d'actions
  * @author perussel
  */
 public class Portefeuille {
     /**.
-     * Liste des actions du portefeuillee
+     * Liste des actions du portefeuille sous forme d'une HashMap associant
+     * une action à une quantité
      */
     private HashMap<Action, Quantite> possederAction;
-     /**.
-     * Constructeur
+   
+     /**
+     * Constructeur qui initialise la liste des actions du portefeuille
      */
+     
     public Portefeuille(){
         this.possederAction = new HashMap<Action, Quantite>();
     }
     /**.
      * Retourne la liste des actions du portefeuille
-     * @return possederAction
+     * @return la liste des actions associées à leur quantité dans le portefeuille
      */
     public HashMap<Action, Quantite> getPossederAction() {
         return possederAction;
     }
     
+    /**
+     * Permet d'acheter une action pour une quantité donnée
+     * @param action l'action à acheter
+     * @param quantite la quantité d'actions à acheter
+     */
     
     public void acheterAction(Action action, int quantite){
+    // Vérification si l'action est déjà présente dans le portefeuille
     if (this.possederAction.containsKey(action)){
+        // Si oui, on récupère la quantité existante et on ajoute la quantité demandée
         Quantite quantiteExistante = this.possederAction.get(action);
         quantiteExistante.ajouterQuantite(quantite);
     }
     else{
+        // Si non, on ajoute l'action avec la quantité demandée
         this.possederAction.put(action,new Quantite(quantite));
     }
 }
 
+ /**
+     * Permet de vendre une action pour une quantité donnée
+     * @param action l'action à vendre
+     * @param quantiteASoustraire la quantité d'actions à vendre
+     */    
     public void vendreAction(Action action,int quantiteASoustraire){
+    // Vérification si l'action est présente dans le portefeuille
     if (this.possederAction.containsKey(action)){
+        // Si oui, on récupère la quantité possédée et on soustrait la quantité demandée
         Quantite quantitePossedee = this.possederAction.get(action);
         int quantitePresente = quantitePossedee.getQuantite();
         if (quantitePresente >= quantiteASoustraire){
@@ -60,6 +76,7 @@ public class Portefeuille {
         }
     }
     else {
+        // Si la quantité demandée est supérieure à la quantité possédée, on affiche un message d'erreur
         System.out.println("Impossible de vendre cette action car elle n'est pas présente dans le portefeuille");
     }
 }
@@ -92,4 +109,6 @@ public class Portefeuille {
         }
         return actions;
     }
+    
+   
 }
