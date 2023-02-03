@@ -19,6 +19,7 @@ public class Portefeuille {
      * une action à une quantité
      */
     private HashMap<Action, Quantite> possederAction;
+    private HashMap<Action, Jour> jourAction;
    
      /**
      * Constructeur qui initialise la liste des actions du portefeuille
@@ -26,6 +27,7 @@ public class Portefeuille {
      
     public Portefeuille(){
         this.possederAction = new HashMap<Action, Quantite>();
+        this.jourAction = new HashMap<Action, Jour>();
     }
     /**.
      * Retourne la liste des actions du portefeuille
@@ -41,7 +43,7 @@ public class Portefeuille {
      * @param quantite la quantité d'actions à acheter
      */
     
-    public void acheterAction(Action action, int quantite){
+    public void acheterAction(Action action, int quantite,Jour jour){
     // Vérification si l'action est déjà présente dans le portefeuille
     if (this.possederAction.containsKey(action)){
         // Si oui, on récupère la quantité existante et on ajoute la quantité demandée
@@ -51,6 +53,8 @@ public class Portefeuille {
     else{
         // Si non, on ajoute l'action avec la quantité demandée
         this.possederAction.put(action,new Quantite(quantite));
+        this.jourAction.put(action,jour);
+           
     }
 }
 
@@ -59,7 +63,7 @@ public class Portefeuille {
      * @param action l'action à vendre
      * @param quantiteASoustraire la quantité d'actions à vendre
      */    
-    public void vendreAction(Action action,int quantiteASoustraire){
+    public void vendreAction(Action action,int quantiteASoustraire,Jour jour){
     // Vérification si l'action est présente dans le portefeuille
     if (this.possederAction.containsKey(action)){
         // Si oui, on récupère la quantité possédée et on soustrait la quantité demandée
@@ -73,6 +77,7 @@ public class Portefeuille {
         }
         if (quantitePossedee.getQuantite() == 0) {
             this.possederAction.remove(action);
+            this.jourAction.remove(action,jour);
         }
     }
     else {
@@ -80,7 +85,10 @@ public class Portefeuille {
         System.out.println("Impossible de vendre cette action car elle n'est pas présente dans le portefeuille");
     }
 }
-
+    //Historique des actions
+    public Jour getJourAction(Action action) {
+       return this.jourAction.get(action);
+    }
     
     public Collection obtenirToutesLesActions(){
         return this.possederAction.values();

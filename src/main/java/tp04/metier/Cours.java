@@ -17,6 +17,12 @@ float valeur;
 public Cours(float valeur){
     this.valeur = valeur;
 }
+
+    @Override
+    public String toString() {
+        return "Cours{" + "valeur=" + valeur + '}';
+    }
+
 //endregion
     //region methods
     public float getValeur() {
