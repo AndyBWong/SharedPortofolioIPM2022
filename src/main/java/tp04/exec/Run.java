@@ -20,6 +20,7 @@ public class Run {
     // Actions simples
     ActionSimple actionSimple1 = new ActionSimple("FranceTelevision");
     ActionSimple actionSimple2 = new ActionSimple("TF1");
+    ActionSimple actionSimple3 = new ActionSimple("BRUH");
     actionSimple1.enregistrerCours(jour2,13.5f);
     actionSimple2.enregistrerCours(jour3, 20f);
     actionSimple1.getValeur(jour1);
@@ -32,11 +33,13 @@ public class Run {
 
     //Creation d'un portefeuille
     Portefeuille portefeuille2 = new Portefeuille();    
-    portefeuille2.acheterAction(actionSimple1, 10);
-    portefeuille2.acheterAction(actionSimple2, 20);
-    portefeuille2.vendreAction(actionSimple1, 10);
-    portefeuille2.vendreAction(actionSimple2, 10);
+    portefeuille2.acheterAction(actionSimple1, 10,jour2);
+    portefeuille2.acheterAction(actionSimple2, 20,jour2);
+    //portefeuille2.vendreAction(actionSimple1, 10);
+    //portefeuille2.vendreAction(actionSimple2, 10);
     System.out.println(portefeuille2.getValeur(jour1));
+   
+    
  
     
     // Consultation des actions en dessous d'un prix donné
@@ -51,7 +54,9 @@ public class Run {
         if (actionComposee.getValeur(jour3) < prix) {
             System.out.println("- " + actionComposee.getLibelle());
         }
+          System.out.println(portefeuille2.getJourAction(actionSimple2));
     }
+    
     
 
 }
