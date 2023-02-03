@@ -16,19 +16,27 @@ public class Cours {
 private float valeur;
 /**
  * Valeur du cours.
- * @param valeur
+ * @param valeur.
  */
 public Cours(final float valeur) {
     this.valeur = valeur;
 }
+    /**
+     * permet  d'avoir la valeur du cours.
+     * @return.
+     */
 
     @Override
-    public String toString() {
+    public final String toString() {
         return "Cours{" + "valeur=" + valeur + '}';
     }
 
 //endregion
     //region methods
+    /**
+     * Retourne la valeur de la méthode getValeur.
+     * @return.
+     */
     public float getValeur() {
         return valeur;
     }
