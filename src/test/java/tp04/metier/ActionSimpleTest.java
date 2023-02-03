@@ -88,7 +88,7 @@ public class ActionSimpleTest {
      }
 
 /**
-     * Test permettant d'enregistrer un cours a une action simple.
+     * Test permettant de tester l'erreur d'enregistrer un cours a une action simple.
      */
     @Test
     public void testEnregistrerCoursCatchGetError() {
