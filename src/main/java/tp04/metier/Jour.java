@@ -5,7 +5,10 @@
  */
 
 package tp04.metier;
-
+/**
+ * constructeur de la classe jour.
+ * @author jerom.
+ */
 public class Jour {
     /**
      * année de jour.
@@ -51,7 +54,10 @@ public class Jour {
     public int getMois() {
         return mois;
     }
-    
+    /**
+     * permet d'avoir l'annee, le mois, le jour.
+     * @return.
+     */
     @Override
     public String toString() {
         return "Jour{" + "annee=" + annee + ", numJour="
