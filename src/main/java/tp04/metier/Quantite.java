@@ -10,7 +10,7 @@ public class Quantite {
     private int quantite;
     //endregion
 
-    //region constructor
+    //region constructor,
     public Quantite(int quantite){
         this.quantite = quantite;
     }
