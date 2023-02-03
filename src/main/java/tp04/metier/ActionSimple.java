@@ -48,14 +48,17 @@ public class ActionSimple extends Action {
      * 
      * @param jour
      * @param valeur
-     * @return AS
+     * @return composerActionSimple
      */
    public HashMap<Jour,Cours> enregistrerCours(Jour jour, float valeur){
+       HashMap<Jour,Cours> AS = new HashMap<Jour,Cours>();
         
         if (!this.composerActionSimple.containsKey(jour)) {
             Cours coursPrecis = new Cours(valeur);
             this.composerActionSimple.put(jour,coursPrecis);
+            AS.put(jour,coursPrecis);
+            return AS;
         }
-        return this.composerActionSimple;
+        return AS;
     }
 }

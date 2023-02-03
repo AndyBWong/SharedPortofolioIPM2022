@@ -80,13 +80,22 @@ public class ActionSimpleTest {
      * Test permettant d'enregistrer un cours a une action simple.
      */
     @Test
-    public void testenregistrerCours() {
+    public void testEnregistrerCoursShouldPass() {
         final Jour j1 = new Jour(EXPECTED_ANNEE, EXPECTED_MOIS, EXPECTED_JOUR);
         final ActionSimple as1 = new ActionSimple(EXPECTED_LIBELLE);
         final boolean result = as1.enregistrerCours(j1, EXPECTED_VALEUR).equals(as1.getComposerActionSimple());
         Assertions.assertTrue(result, "The HashMap should be the same ");
      }
-    
-    
-    
+
+/**
+     * Test permettant d'enregistrer un cours a une action simple.
+     */
+    @Test
+    public void testEnregistrerCoursCatchGetError() {
+        final Jour j1 = new Jour(EXPECTED_ANNEE, EXPECTED_MOIS, EXPECTED_JOUR);
+        final ActionSimple as1 = new ActionSimple(EXPECTED_LIBELLE);
+        as1.enregistrerCours(j1, EXPECTED_VALEUR);
+        final boolean result = as1.enregistrerCours(j1, EXPECTED_VALEUR).equals(as1.getComposerActionSimple());
+        Assertions.assertTrue(result, "The HashMap should be the same ");
+    }
 }
