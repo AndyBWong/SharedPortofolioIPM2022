@@ -80,4 +80,13 @@ public class ActionComposee extends Action {
         }
         return compo;
     }
+    
+    /**
+     * Récupère la valeur du cours actuel de l'action composée.
+     * @return la valeur du cours actuel de l'action composée
+     */
+    @Override
+    public float valeurActuelle() {
+        return -1;
+    }
 }

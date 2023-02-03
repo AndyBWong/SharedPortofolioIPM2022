@@ -56,6 +56,7 @@ public class ActionSimpleTest {
         final ActionSimple as2 = new ActionSimple(EXPECTED_LIBELLE);
         final float valeurCours = 12f;
         as2.enregistrerCours(jourExistant,  valeurCours);}
+    
     /**
      * Test permettant de vérifier qu'on récupère la bonne valeur d'une action
      * simple pour un jour donnée.
@@ -68,14 +69,20 @@ public class ActionSimpleTest {
         final float result = as2.getValeur(jourExistant);
         Assertions.assertEquals(valeurCours, result);
     }
+    
+    /**
+     * Test permettant de vérifier qu'on récupère la bonne valeur d'une action
+     * simple pour un jour non enregistré.
+     */
     @Test
     public void testGetValJourActionSimpleCatchGetError(){
         final ActionSimple as3 = new ActionSimple(EXPECTED_LIBELLE);
         final float valeurCours = -1f;
-        final Jour jourNonExistant = new Jour(2019, 6, 2);
+        final Jour jourNonExistant = new Jour(2019,6, 2);
         final float result = as3.getValeur(jourNonExistant);
         Assertions.assertEquals(valeurCours, result);
     }
+    
     /**
      * Test permettant d'enregistrer un cours a une action simple.
      */
@@ -87,6 +94,7 @@ public class ActionSimpleTest {
                 .equals(as1.getComposerActionSimple());
         Assertions.assertTrue(result, "The HashMap should be the same ");
     }
+    
     /**
      * Test permettant de tester l'erreur.
      * d'enregistrer un cours a une action simple.
@@ -98,6 +106,32 @@ public class ActionSimpleTest {
         as1.enregistrerCours(j1, EXPECTED_VALEUR);
         final boolean result = as1.enregistrerCours(j1, EXPECTED_VALEUR).
                 equals(as1.getComposerActionSimple());
-        Assertions.assertTrue(result, "The HashMap should be the same ");
+        Assertions.assertFalse(result, "The HashMap should be the same ");
+    }
+    
+    /**
+     * Test permettant d'avoir la valeur actuelle d'une action simple.
+     */
+    @Test
+    public void testGetValeurActuelle(){
+        final Jour jn = new Jour(EXPECTED_ANNEE, EXPECTED_MOIS, EXPECTED_JOUR);
+        final ActionSimple asn = new ActionSimple(EXPECTED_LIBELLE);
+        asn.enregistrerCours(jn, EXPECTED_VALEUR);
+        final float result = asn.valeurActuelle();
+        Assertions.assertEquals(EXPECTED_VALEUR, result);
+        
+        
+    }
+    /**
+     * Test permettant d'avoir le dernier jour d'une action simple.
+     */
+    @Test
+    public void testGetJourValeurActuelle(){
+        final Jour jn = new Jour(EXPECTED_ANNEE, EXPECTED_MOIS, EXPECTED_JOUR);
+        final ActionSimple asn = new ActionSimple(EXPECTED_LIBELLE);
+        asn.enregistrerCours(jn, EXPECTED_VALEUR);
+        String dernierJourResult = asn.getDernierJour();
+        String dernierJourExpected = jn.toString();
+        Assertions.assertEquals(dernierJourExpected, dernierJourResult);
     }
 }

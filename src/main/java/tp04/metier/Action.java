@@ -30,7 +30,11 @@ public abstract class Action {
     }
 
     public abstract float getValeur(Jour jour);
-
-
+    
+    /**
+     * Récupère la dernière valeur du cours d'une action.
+     * @return la dernière valeur du cours d'une action
+     */
+    public abstract float valeurActuelle();
     //endregion
 }
