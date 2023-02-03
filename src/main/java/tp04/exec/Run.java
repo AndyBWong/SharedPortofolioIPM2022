@@ -55,8 +55,19 @@ public class Run {
             System.out.println("- " + actionComposee.getLibelle());
         }
           System.out.println(portefeuille2.getJourAction(actionSimple2));
+    
+    
+        ActionSimple action = new ActionSimple("ActionTest");
+        Jour jour4 = new Jour(2022,01,01);
+        Jour jour5 = new Jour(2022,01,02);
+        Jour jour6 = new Jour(2022,01,03);
+        
+        action.enregistrerCours(jour4, 10.5f);
+        action.enregistrerCours(jour5, 11.5f);
+        action.enregistrerCours(jour6, 12.5f);
+        
+        action.afficherHistoriqueValeurActionParJour();
+    }
     }
     
-    
 
-}
