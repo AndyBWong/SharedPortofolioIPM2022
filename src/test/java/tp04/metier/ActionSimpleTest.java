@@ -29,7 +29,7 @@ public class ActionSimpleTest {
     /**
      * Jour de l'Action simple
      */
-    private static final int  EXPECTED_JOUR = 136;
+    private static final int  EXPECTED_JOUR = 20;
     
     /**
      * Jour de l'Action simple
@@ -48,14 +48,14 @@ public class ActionSimpleTest {
     public void testGetLibelleShouldPass() {
         final ActionSimple as1 = new ActionSimple(EXPECTED_LIBELLE);
         final String result = as1.getLibelle();
-        
-        Assertions.assertSame(EXPECTED_LIBELLE, result, "The label must be the same as the one used at creation time.");
+        Assertions.assertSame(EXPECTED_LIBELLE, result,
+                "The label must be the same as the one used at creation time.");
     }
     @Test
     public void testenregistrerCoursShouldPass() {
         final ActionSimple as2 = new ActionSimple(EXPECTED_LIBELLE);
         final float valeurCours = 12f;
-        as2.enregistrerCours(jourExistant, valeurCours);}
+        as2.enregistrerCours(jourExistant,  valeurCours);}
     /**
      * Test permettant de vérifier qu'on récupère la bonne valeur d'une action
      * simple pour un jour donnée.
@@ -72,20 +72,21 @@ public class ActionSimpleTest {
     public void testGetValJourActionSimpleCatchGetError(){
         final ActionSimple as3 = new ActionSimple(EXPECTED_LIBELLE);
         final float valeurCours = -1f;
-        final Jour jourNonExistant = new Jour(2019,6, 2);
+        final Jour jourNonExistant = new Jour(2019, 6, 2);
         final float result = as3.getValeur(jourNonExistant);
         Assertions.assertEquals(valeurCours, result);
     }
     /**
-     * Test permettant d'enregistrer un cours a une action simple
+     * Test permettant d'enregistrer un cours a une action simple.
      */
     @Test
     public void testenregistrerCours() {
-        final Jour j1 = new Jour(EXPECTED_ANNEE,EXPECTED_MOIS,EXPECTED_JOUR);
+        final Jour j1 = new Jour(EXPECTED_ANNEE, EXPECTED_MOIS, EXPECTED_JOUR);
         final ActionSimple as1 = new ActionSimple(EXPECTED_LIBELLE);
-        as1.enregistrerCours(j1, EXPECTED_VALEUR);
-        final boolean result = as1.enregistrerCours(j1, EXPECTED_VALEUR)
-            .equals(as1.getComposerActionSimple());
+        final boolean result = as1.enregistrerCours(j1, EXPECTED_VALEUR).equals(as1.getComposerActionSimple());
         Assertions.assertTrue(result, "The HashMap should be the same ");
      }
+    
+    
+    
 }

@@ -45,16 +45,17 @@ public class ActionSimple extends Action {
     }
 
     /**
-     *enregistre une action simple en fonction du jour.
-     * et de la valeur donnée pour ce jour.
+     * 
      * @param jour
-     * @param valeur 
+     * @param valeur
+     * @return AS
      */
-    public void enregistrerCours(Jour jour, float valeur){
+   public HashMap<Jour,Cours> enregistrerCours(Jour jour, float valeur){
+        
         if (!this.composerActionSimple.containsKey(jour)) {
             Cours coursPrecis = new Cours(valeur);
             this.composerActionSimple.put(jour,coursPrecis);
-            System.out.println("L'action" + libelle + "a la date" + jour + "avec comme valeur" + valeur + "a bien été enregistrer");
         }
+        return this.composerActionSimple;
     }
 }
