@@ -1,8 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 
 package tp04.metier;
 
@@ -27,7 +27,7 @@ public class ActionComposee extends Action {
         super(libelle);
         this.composition = new HashMap<ActionSimple,Pourcentage>();
     }
-
+    
     public HashMap<ActionSimple, Pourcentage> getComposition() {
         return composition;
     }
@@ -51,42 +51,48 @@ public class ActionComposee extends Action {
         System.out.println(sommeValeurCompo);
         return sommeValeurCompo;
     }
-
     /**.
      *enregistre le pourcentage d'une action composée en fonction d"une action
      * @param action
      * @param pourcentage
+     * @return compo
      */
-    public HashMap<ActionSimple, Pourcentage> enregistrerComp(ActionSimple action, float pourcentage){
-        Pourcentage pourcentageAMettre = new Pourcentage(pourcentage);
-        HashMap<ActionSimple, Pourcentage> compo = new HashMap<ActionSimple, Pourcentage>();
-        float sommePourcentageComposition = 0;
-        final int maxPourcentage = 100;
-        if (pourcentage <= maxPourcentage && pourcentage >= 0) {
-            for (Map.Entry<ActionSimple, Pourcentage> compositionChoisi:composition.entrySet()) {
-                System.out.println(compositionChoisi.getKey() + " " + compositionChoisi.getValue());
-                sommePourcentageComposition += compositionChoisi.getValue().getPourcentage();
-
-            }
-            if ((sommePourcentageComposition + pourcentage) <= maxPourcentage){
-                this.composition.put(action, pourcentageAMettre);
-                compo.put(action,pourcentageAMettre);
-            } else {
-                System.out.println("La somme du pourcentage"
-                        + " est au dessus de 100 ");
-            }
-        } else {
-            System.out.println("Le pourcentage est incorrect ");
-        }
-        return compo;
-    }
-    
-    /**
-     * Récupère la valeur du cours actuel de l'action composée.
-     * @return la valeur du cours actuel de l'action composée
-     */
-    @Override
-    public float valeurActuelle() {
-        return -1;
-    }
+    public HashMap<ActionSimple, Pourcentage>
+        enregistrerComp(ActionSimple action, float pourcentage){
+                    Pourcentage pourcentageAMettre
+                            = new Pourcentage(pourcentage);
+                    HashMap<ActionSimple, Pourcentage> compo =
+                            new HashMap<ActionSimple, Pourcentage>();
+                    float sommePourcentageComposition = 0;
+                    final int maxPourcentage = 100;
+                    if (pourcentage <= maxPourcentage && pourcentage >= 0) {
+                        for (Map.Entry<ActionSimple, Pourcentage>
+                                compositionChoisi:composition.entrySet()) {
+                            System.out.println(compositionChoisi.getKey() + " "
+                                    + compositionChoisi.getValue());
+                            sommePourcentageComposition +=
+                                    compositionChoisi.getValue()
+                                            .getPourcentage();
+                        }
+                        if ((sommePourcentageComposition + pourcentage)
+                                <= maxPourcentage) {
+                            this.composition.put(action, pourcentageAMettre);
+                            compo.put(action, pourcentageAMettre);
+                        } else {
+                            System.out.println("La somme du pourcentage"
+                                    + " est au dessus de 100 ");
+                        }
+                    } else {
+                        System.out.println("Le pourcentage est incorrect ");
+                    }
+                    return compo;
+                }
+                /**
+                 * Récupère la valeur du cours actuel de l'action composée.
+                 * @return la valeur du cours actuel de l'action composée
+                 */
+                @Override
+                public float valeurActuelle() {
+                    return -1;
+                }
 }
