@@ -27,7 +27,7 @@ public class ActionComposeeTest {
      * Jour qui pour lequel une action possède un cours.
      * Antérieur à la date du jour.
      */
-    private static final Jour jourExistant = new Jour(2022, 1) ;
+    private static final Jour jourExistant = new Jour(2022, 12,  1) ;
     /**
      * Constructeur de la classe de test.
      */

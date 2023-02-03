@@ -7,6 +7,7 @@
 package tp04.metier;
 
 import java.util.HashMap;
+import java.util.Map;
 
 
 public class ActionSimple extends Action {
@@ -14,7 +15,12 @@ public class ActionSimple extends Action {
     * Le cours de l'action en fonction du jour.
     */
     private HashMap<Jour, Cours> composerActionSimple;
-
+    
+    /**
+     * HashCode du dernier jour enregistré pour le cours d'une action.
+     */
+    private String dernierJour;
+    
     //constructor
     public ActionSimple(String libelle){
         super(libelle);
@@ -45,16 +51,46 @@ public class ActionSimple extends Action {
     }
 
     /**
-     *enregistre une action simple en fonction du jour.
-     * et de la valeur donnée pour ce jour.
+     * Enregistrement d'un cours d'une action Simple.
      * @param jour
-     * @param valeur 
+     * @param valeur
+     * @return composerActionSimple
      */
-    public void enregistrerCours(Jour jour, float valeur){
+   public HashMap<Jour,Cours> enregistrerCours(Jour jour, float valeur){
+       HashMap<Jour, Cours> aS = new HashMap<Jour, Cours>();
         if (!this.composerActionSimple.containsKey(jour)) {
             Cours coursPrecis = new Cours(valeur);
-            this.composerActionSimple.put(jour,coursPrecis);
-            System.out.println("L'action" + libelle + "a la date" + jour + "avec comme valeur" + valeur + "a bien été enregistrer");
+            this.composerActionSimple.put(jour, coursPrecis);
+            aS.put(jour, coursPrecis);
+            this.dernierJour = jour.toString();
+            return aS;
         }
+        return aS;
     }
+   
+   /**
+    * Récupère la valeur du cours actuel de l'action simple.
+    * @return la valeur du cours actuel de l'action simple
+    */
+   @Override
+   public float valeurActuelle() {
+       Jour dernierJourEnregistre;
+       for(Map.Entry<Jour, Cours> jourCour :
+               this.composerActionSimple.entrySet()) {
+           if (jourCour.getKey().toString().equals(this.dernierJour)) {
+               dernierJourEnregistre = jourCour.getKey();
+               return this.composerActionSimple.get(dernierJourEnregistre)
+                       .getValeur();
+           }
+       }
+       return -1;
+   }
+   
+   /**
+    * Retourne le hashCode du dernier jour enregistré pour un cours de l'action.
+    * @return le hashCode du dernier jour enregistré pour un cours
+    */
+   public String getDernierJour() {
+       return dernierJour;
+   }
 }
