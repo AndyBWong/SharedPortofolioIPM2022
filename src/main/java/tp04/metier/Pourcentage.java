@@ -1,20 +1,30 @@
 package tp04.metier;
 
 /**
- *
- * @author andyb
+ *attribut de la classe pourcentage.
+ * @author andyb.
  */
+
 public class Pourcentage {
-    //region attribut
-    float pourcentage;
+    /**
+     * attribut pourcentage.
+     */
+    private float pourcentage;
     //endregion
     //region constructor
+    /**
+     * constructeur de la classe pourcentage.
+     * @param pourcentage.
+     */
     public Pourcentage(float pourcentage){
         this.pourcentage = pourcentage;
     }
     //end region
-    
-    
+
+    /**
+     *permet d'avoir le pourcentage.
+     * @return pourcentage.
+     */
     public float getPourcentage() {
         return pourcentage;
     }
