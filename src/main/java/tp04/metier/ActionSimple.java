@@ -7,6 +7,7 @@
 package tp04.metier;
 
 import java.util.HashMap;
+import java.util.Map;
 
 
 public class ActionSimple extends Action {
@@ -14,7 +15,12 @@ public class ActionSimple extends Action {
     * Le cours de l'action en fonction du jour.
     */
     private HashMap<Jour, Cours> composerActionSimple;
-
+    
+    /**
+     * HashCode du dernier jour enregistré pour le cours d'une action.
+     */
+    private String dernierJour;
+    
     //constructor
     public ActionSimple(String libelle){
         super(libelle);
@@ -60,4 +66,30 @@ public class ActionSimple extends Action {
         }
         return aS;
     }
+   
+   /**
+    * Récupère la valeur du cours actuel de l'action simple.
+    * @return la valeur du cours actuel de l'action simple
+    */
+   @Override
+   public float valeurActuelle() {
+       Jour dernierJourEnregistre;
+       for(Map.Entry<Jour, Cours> jourCour :
+               this.composerActionSimple.entrySet()) {
+           if (jourCour.getKey().toString().equals(this.dernierJour)) {
+               dernierJourEnregistre = jourCour.getKey();
+               return this.composerActionSimple.get(dernierJourEnregistre)
+                       .getValeur();
+           }
+       }
+       return -1;
+   }
+   
+   /**
+    * Retourne le hashCode du dernier jour enregistré pour un cours de l'action.
+    * @return le hashCode du dernier jour enregistré pour un cours
+    */
+   public String getDernierJour() {
+       return dernierJour;
+   }
 }

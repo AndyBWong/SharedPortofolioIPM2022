@@ -72,4 +72,13 @@ public class ActionComposee extends Action {
             System.out.println("Le pourcentage est incorrect ");
         }
     }
+    
+    /**
+     * Récupère la valeur du cours actuel de l'action composée.
+     * @return la valeur du cours actuel de l'action composée
+     */
+    @Override
+    public float valeurActuelle() {
+        return -1;
+    }
 }
