@@ -63,7 +63,7 @@ public class PortefeuilleTest {
         final ActionSimple as1 = new ActionSimple("AS1");
         final Jour j1 = new Jour(2000, 4,  02);
         as1.enregistrerCours(j1, VALEUR_AS);
-        p1.acheterAction(as1, 2);
+        p1.acheterAction(as1, 2,j1);
         final float result = p1.getValeur(j1);
         Assertions.assertEquals(EXPECTED_VALEUR, +
                 result, "The Value should be the same.");
@@ -78,8 +78,9 @@ public class PortefeuilleTest {
         final ActionSimple as2 = new ActionSimple(EXPECTED_AS2);
         final Quantite q1 = new Quantite(EXPECTED_Q1);
         final Quantite q2 = new Quantite(EXPECTED_Q2);
-        p1.acheterAction(as1, q1.getQuantite());
-        p1.acheterAction(as2, q2.getQuantite());
+        final Jour j1 = new Jour(2022,2,3);
+        p1.acheterAction(as1, q1.getQuantite(),j1);
+        p1.acheterAction(as2, q2.getQuantite(),j1);
         final boolean result = p1.getPossederAction()
             .equals(p1.consulterActions());
         Assertions.assertTrue(result, "The HashMap should be the same ");
