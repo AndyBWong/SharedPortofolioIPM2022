@@ -1,9 +1,10 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+* Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
 * Click nbfs://nbhost/SystemFileSystem/Templates/UnitTests/JUnit5TestClass.java to edit this template
- */
+*/
 package tp04.metier;
 
+import java.util.HashMap;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -14,14 +15,14 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 public class ActionSimpleTest {
     private static final String EXPECTED_LIBELLE = "France 5";
-
+    
     /**
      * Jour qui pour lequel une action possède un cours.
      * Antérieur à la date du jour.
      */
     private static final Jour jourExistant = new Jour(2022,7, 1) ;
     
-     /**
+    /**
      * Année de l'Action simple
      */
     private static final int  EXPECTED_ANNEE = 2022;
@@ -40,10 +41,10 @@ public class ActionSimpleTest {
      * Valeur de l'Action Simple
      */
     private static final int  EXPECTED_VALEUR = 136;
-
+    
     public ActionSimpleTest() {
     }
-
+    
     @Test
     public void testGetLibelleShouldPass() {
         final ActionSimple as1 = new ActionSimple(EXPECTED_LIBELLE);
@@ -93,8 +94,8 @@ public class ActionSimpleTest {
         final boolean result = as1.enregistrerCours(j1, EXPECTED_VALEUR)
                 .equals(as1.getComposerActionSimple());
         Assertions.assertTrue(result, "The HashMap should be the same ");
-     }
-
+    }
+    
     /**
      * Test permettant de tester l'erreur d'enregistrer un cours a une action simple.
      */
@@ -132,5 +133,27 @@ public class ActionSimpleTest {
         String dernierJourResult = asn.getDernierJour();
         String dernierJourExpected = jn.toString();
         Assertions.assertEquals(dernierJourExpected, dernierJourResult);
+    }
+    
+    /**
+     * tester le contenu dans le HashMap.
+     */
+    @Test
+    public void tesGetJourValeurActu(){
+        final Jour jn = new Jour(EXPECTED_ANNEE, EXPECTED_MOIS, EXPECTED_JOUR);
+        final ActionSimple asn = new ActionSimple(EXPECTED_LIBELLE);
+        final HashMap<Jour,Cours>jourCour = asn.enregistrerCours(jn, EXPECTED_VALEUR);
+        Assertions.assertTrue(asn.getComposerActionSimple().keySet().contains(jn));
+    }
+    
+    /**
+     * tester le contenu dans le HashMap.
+     */
+    @Test
+    public void testGetJourValeurActuelleError(){
+        final Jour jn = new Jour(EXPECTED_ANNEE, EXPECTED_MOIS, EXPECTED_JOUR);
+        final ActionSimple asn = new ActionSimple(EXPECTED_LIBELLE);
+        float dernierJourResult = asn.valeurActuelle();
+        Assertions.assertEquals(-1f, dernierJourResult);
     }
 }
