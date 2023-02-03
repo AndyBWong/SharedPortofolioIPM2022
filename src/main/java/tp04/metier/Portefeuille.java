@@ -17,7 +17,7 @@ import java.util.Iterator;
  */
 public class Portefeuille {
     /**.
-     * Liste des actions du portefeuille
+     * Liste des actions du portefeuillee
      */
     private HashMap<Action, Quantite> possederAction;
      /**.
