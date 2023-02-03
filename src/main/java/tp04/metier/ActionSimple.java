@@ -28,6 +28,7 @@ public class ActionSimple extends Action {
     }
     /**
      * Recuperer la composition d'une action simple
+     * @return 
      */
     public HashMap<Jour, Cours> getComposerActionSimple() {    
         return composerActionSimple;
@@ -93,4 +94,15 @@ public class ActionSimple extends Action {
    public String getDernierJour() {
        return dernierJour;
    }
+   public void afficherHistoriqueValeurActionParJour() {
+    if (composerActionSimple.isEmpty()) {
+        System.out.println("Aucun cours enregistré pour cette action.");
+    } else {
+        System.out.println("Historique des valeurs de l'action " + getLibelle() + " par jour:");
+        for (Map.Entry<Jour, Cours> jourCours : composerActionSimple.entrySet()) {
+            System.out.println("Jour: " + jourCours.getKey() + ", Valeur: " + jourCours.getValue().getValeur());
+        }
+    }
+}
+
 }
