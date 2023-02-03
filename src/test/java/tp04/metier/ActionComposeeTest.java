@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 package tp04.metier;
+import java.util.HashMap;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -28,6 +29,10 @@ public class ActionComposeeTest {
      * Antérieur à la date du jour.
      */
     private static final Jour jourExistant = new Jour(2022, 12,  1) ;
+    private static final float POURCENTAGE_FAILED = 200;
+    private static final float POURCENTAGE_PASS1= 40;
+    private static final float POURCENTAGE_PASS2 = 60;
+    private static final float POURCENTAGE_FAILED1 = 70;
     /**
      * Constructeur de la classe de test.
      */
@@ -96,6 +101,66 @@ public class ActionComposeeTest {
         ac1.enregistrerComp(as1, pourcentage);
         result = ac1.getValeur(jourExistant);
         Assertions.assertEquals(expectedValeur, result);
+    }
+    /**
+     * Test de la composition d'une action composé
+     * est fausse par rapport au pourcentage.
+     */
+    @Test
+    public void TestenregistrerCompShouldPass() {
+         final ActionComposee ac1 = new ActionComposee("FranceTV");
+        final ActionSimple as = new ActionSimple("France 2");
+        as.enregistrerCours(jourExistant, 30);
+        final boolean result = ac1.enregistrerComp(as, POURCENTAGE_PASS1).
+                equals(ac1.getComposition());
+         Assertions.assertTrue(result, "The HashMap should be the same ");
+    }
+    /**
+     * Test de la composition d'une action composé
+     * est fausse par rapport au pourcentage.
+     */
+    @Test
+    public void TestenregistrerCompShouldFail() {
+        final ActionComposee ac1 = new ActionComposee("FranceTV");
+        final ActionSimple as1 = new ActionSimple("France 2");
+        final ActionSimple as2 = new ActionSimple("France 3");
+        as1.enregistrerCours(jourExistant, 30);
+        as2.enregistrerCours(jourExistant, 13);
+        
+        final boolean result = ac1.enregistrerComp(as2, POURCENTAGE_FAILED).isEmpty();
+        Assertions.assertTrue(result, "The HashMap should not be empty ");
+    }
+    /**
+     * Test de la composition d'une action composé
+     * est fausse par rapport au pourcentage.
+     */
+    @Test
+    public void TestenregistrerCompShouldPass2() {
+         final ActionComposee ac1 = new ActionComposee("FranceTV");
+        final ActionSimple as1 = new ActionSimple("France 2");
+        final ActionSimple as2 = new ActionSimple("France 3");
+        as1.enregistrerCours(jourExistant, 30);
+        ac1.enregistrerComp(as1, POURCENTAGE_PASS1);
+        ac1.enregistrerComp(as2, POURCENTAGE_PASS2);
+        final boolean result = ac1.getComposition().containsKey(as2);
+        Assertions.assertTrue(result, "as2 should be in the Hashmap");
+    }
+    /**
+     * Test de la composition d'une action composé
+     * est fausse par rapport au pourcentage.
+     */
+    @Test
+    public void TestenregistrerCompShouldFail2() {
+        final ActionComposee ac1 = new ActionComposee("FranceTV");
+        final ActionSimple as1 = new ActionSimple("France 2");
+        final ActionSimple as2 = new ActionSimple("France 3");
+        as1.enregistrerCours(jourExistant, 30);
+        as2.enregistrerCours(jourExistant, 13);
+        
+        ac1.enregistrerComp(as1, POURCENTAGE_PASS1);
+        ac1.enregistrerComp(as2, POURCENTAGE_FAILED1);
+        final boolean result = ac1.getComposition().containsKey(as2);
+        Assertions.assertFalse(result, "as2 should not be in the Hashmap");
     }
 
 }
