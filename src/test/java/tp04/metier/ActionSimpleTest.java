@@ -107,4 +107,30 @@ public class ActionSimpleTest {
                 equals(as1.getComposerActionSimple());
         Assertions.assertFalse(result, "The HashMap should be the same ");
     }
+    
+    /**
+     * Test permettant d'avoir la valeur actuelle d'une action simple.
+     */
+    @Test
+    public void testGetValeurActuelle(){
+        final Jour jn = new Jour(EXPECTED_ANNEE, EXPECTED_MOIS, EXPECTED_JOUR);
+        final ActionSimple asn = new ActionSimple(EXPECTED_LIBELLE);
+        asn.enregistrerCours(jn, EXPECTED_VALEUR);
+        final float result = asn.valeurActuelle();
+        Assertions.assertEquals(EXPECTED_VALEUR, result);
+        
+        
+    }
+    /**
+     * Test permettant d'avoir le dernier jour d'une action simple.
+     */
+    @Test
+    public void testGetJourValeurActuelle(){
+        final Jour jn = new Jour(EXPECTED_ANNEE, EXPECTED_MOIS, EXPECTED_JOUR);
+        final ActionSimple asn = new ActionSimple(EXPECTED_LIBELLE);
+        asn.enregistrerCours(jn, EXPECTED_VALEUR);
+        String dernierJourResult = asn.getDernierJour();
+        String dernierJourExpected = jn.toString();
+        Assertions.assertEquals(dernierJourExpected, dernierJourResult);
+    }
 }

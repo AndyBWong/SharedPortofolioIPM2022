@@ -62,6 +62,7 @@ public class ActionSimple extends Action {
             Cours coursPrecis = new Cours(valeur);
             this.composerActionSimple.put(jour, coursPrecis);
             aS.put(jour, coursPrecis);
+            this.dernierJour = jour.toString();
             return aS;
         }
         return aS;
