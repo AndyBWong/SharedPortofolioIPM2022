@@ -34,30 +34,36 @@ public class Portefeuille {
         return possederAction;
     }
     
+    
     public void acheterAction(Action action, int quantite){
-        // je prends une action en particulier
-        if (this.possederAction.containsKey(action)){
-            this.possederAction.get(action).ajouterQuantite(quantite);
+    if (this.possederAction.containsKey(action)){
+        Quantite quantiteExistante = this.possederAction.get(action);
+        quantiteExistante.ajouterQuantite(quantite);
+    }
+    else{
+        this.possederAction.put(action,new Quantite(quantite));
+    }
+}
+
+    public void vendreAction(Action action,int quantiteASoustraire){
+    if (this.possederAction.containsKey(action)){
+        Quantite quantitePossedee = this.possederAction.get(action);
+        int quantitePresente = quantitePossedee.getQuantite();
+        if (quantitePresente >= quantiteASoustraire){
+            quantitePossedee.enleverQuantite(quantiteASoustraire);
         }
         else{
-            this.possederAction.put(action,new Quantite(quantite));
+            System.out.println("Impossible de vendre autant d'actions car la quantité demandée est supérieure à la quantité possédée");
         }
-        
-        
-        
-    }
-    public void vendreAction(Action action,int quantiteASoustraire){
-        if (this.possederAction.containsKey(action)){
-            int quantitePresente = possederAction.get(action).getQuantite();
-            if (quantitePresente>quantiteASoustraire){
-                possederAction.get(action).enleverQuantite(quantiteASoustraire);
-            }
-            else{
-                System.out.println("Impossible d'enlever cette quantite car la quantite a enlever est trop grande");
-            }
-            
+        if (quantitePossedee.getQuantite() == 0) {
+            this.possederAction.remove(action);
         }
     }
+    else {
+        System.out.println("Impossible de vendre cette action car elle n'est pas présente dans le portefeuille");
+    }
+}
+
     
     public Collection obtenirToutesLesActions(){
         return this.possederAction.values();
