@@ -4,6 +4,7 @@
 */
 package tp04.metier;
 
+import java.util.HashMap;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -133,5 +134,27 @@ public class ActionSimpleTest {
         String dernierJourResult = asn.getDernierJour();
         String dernierJourExpected = jn.toString();
         Assertions.assertEquals(dernierJourExpected, dernierJourResult);
+    }
+    
+    /**
+     * tester le contenu dans le HashMap.
+     */
+    @Test
+    public void tesGetJourValeurActu(){
+        final Jour jn = new Jour(EXPECTED_ANNEE, EXPECTED_MOIS, EXPECTED_JOUR);
+        final ActionSimple asn = new ActionSimple(EXPECTED_LIBELLE);
+        final HashMap<Jour,Cours>jourCour = asn.enregistrerCours(jn, EXPECTED_VALEUR);
+        Assertions.assertTrue(asn.getComposerActionSimple().keySet().contains(jn));
+    }
+    
+    /**
+     * tester le contenu dans le HashMap.
+     */
+    @Test
+    public void testGetJourValeurActuelleError(){
+        final Jour jn = new Jour(EXPECTED_ANNEE, EXPECTED_MOIS, EXPECTED_JOUR);
+        final ActionSimple asn = new ActionSimple(EXPECTED_LIBELLE);
+        float dernierJourResult = asn.valeurActuelle();
+        Assertions.assertEquals(-1f, dernierJourResult);
     }
 }

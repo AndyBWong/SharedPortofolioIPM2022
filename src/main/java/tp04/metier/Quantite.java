@@ -31,6 +31,11 @@ public class Quantite {
         return quantite;
     }
 
-    //endregion
+    @Override
+    public String toString() {
+        return "Quantite{" + "quantite=" + quantite + '}';
+    }
+
+    
     
 }
