@@ -10,11 +10,15 @@ package tp04.metier;
  * Cours d'une action.
  */
 public class Cours {
-    //region attribut
-float valeur;
-//endregion
-    //region constructor
-public Cours(float valeur){
+/**
+ * Valeur du cours.
+ */
+private float valeur;
+/**
+ * Valeur du cours.
+ * @param valeur
+ */
+public Cours(final float valeur) {
     this.valeur = valeur;
 }
 

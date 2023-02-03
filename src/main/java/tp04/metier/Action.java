@@ -6,31 +6,37 @@
 
 package tp04.metier;
 
-import java.util.Objects;
+
 
 /**
  *
  * @author perussell
  */
 public abstract class Action {
-    //region attribut
-    protected String libelle;
-    //endregion
-
-    //region constructor
-    public Action(String libelle){
+    /**
+     * libelle de action.
+     */
+    private String libelle;
+    /**
+     *
+     * @param libelle.
+     */
+    public Action(String libelle) {
         this.libelle = libelle;
     }
-    //endregion
-
-    //region methods
-
-    public String getLibelle() {
+    /**
+     * Obtenir le libelle de action.
+     * @return libelle
+     */
+    public final String getLibelle() {
         return libelle;
     }
-
+    /**
+     *
+     * @param jour
+     * @return float
+     */
     public abstract float getValeur(Jour jour);
-    
     /**
      * Récupère la dernière valeur du cours d'une action.
      * @return la dernière valeur du cours d'une action

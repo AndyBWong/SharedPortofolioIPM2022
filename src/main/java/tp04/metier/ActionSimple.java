@@ -9,28 +9,47 @@ package tp04.metier;
 import java.util.HashMap;
 import java.util.Map;
 
-
+/**
+ * Class ActionSimple.
+ *
+ */
 public class ActionSimple extends Action {
    /**
     * Le cours de l'action en fonction du jour.
     */
     private HashMap<Jour, Cours> composerActionSimple;
-    
     /**
      * HashCode du dernier jour enregistré pour le cours d'une action.
      */
     private String dernierJour;
-    
-    //constructor
+    /**
+     * Constructeur de Action Simple.
+     * @param libelle
+     */
     public ActionSimple(String libelle){
         super(libelle);
         this.composerActionSimple = new HashMap<Jour, Cours>();
     }
     /**
-     * Recuperer la composition d'une action simple
-     * @return 
+     * setter de la composition de AS.
+     * @param composerActionSimple
      */
-    public HashMap<Jour, Cours> getComposerActionSimple() {    
+    public void setComposerActionSimple(HashMap<Jour,
+            Cours> composerActionSimple) {
+        this.composerActionSimple = composerActionSimple;
+    }
+    /**
+     * Setter du dernier jour.
+     * @param dernierJour
+     */
+    public void setDernierJour(String dernierJour) {
+        this.dernierJour = dernierJour;
+    }
+    /**
+     * Recuperer la composition d'une action simple.
+     * @return composerActionSimple
+     */
+    public HashMap<Jour, Cours> getComposerActionSimple() {
         return composerActionSimple;
     }
     /**.
@@ -50,14 +69,14 @@ public class ActionSimple extends Action {
             return -1;
         }
     }
-
     /**
      * Enregistrement d'un cours d'une action Simple.
      * @param jour
      * @param valeur
      * @return composerActionSimple
      */
-   public HashMap<Jour,Cours> enregistrerCours(Jour jour, float valeur){
+   public final HashMap<Jour, Cours> enregistrerCours(final Jour
+           jour, float valeur) {
        HashMap<Jour, Cours> aS = new HashMap<Jour, Cours>();
         if (!this.composerActionSimple.containsKey(jour)) {
             Cours coursPrecis = new Cours(valeur);
@@ -68,16 +87,15 @@ public class ActionSimple extends Action {
         }
         return aS;
     }
-   
-   /**
+    /**
     * Récupère la valeur du cours actuel de l'action simple.
     * @return la valeur du cours actuel de l'action simple
     */
    @Override
-   public float valeurActuelle() {
+   public final float valeurActuelle() {
        Jour dernierJourEnregistre;
-       for(Map.Entry<Jour, Cours> jourCour :
-               this.composerActionSimple.entrySet()) {
+       for (Map.Entry<Jour, Cours> jourCour
+               :this.composerActionSimple.entrySet()) {
            if (jourCour.getKey().toString().equals(this.dernierJour)) {
                dernierJourEnregistre = jourCour.getKey();
                return this.composerActionSimple.get(dernierJourEnregistre)
@@ -86,21 +104,26 @@ public class ActionSimple extends Action {
        }
        return -1;
    }
-   
    /**
     * Retourne le hashCode du dernier jour enregistré pour un cours de l'action.
     * @return le hashCode du dernier jour enregistré pour un cours
     */
-   public String getDernierJour() {
+   public final String getDernierJour() {
        return dernierJour;
    }
-   public void afficherHistoriqueValeurActionParJour() {
+   /**
+    * Affiche l'historique de Valeur Action.
+    */
+   public final void afficherHistoriqueValeurActionParJour() {
     if (composerActionSimple.isEmpty()) {
         System.out.println("Aucun cours enregistré pour cette action.");
     } else {
-        System.out.println("Historique des valeurs de l'action " + getLibelle() + " par jour:");
-        for (Map.Entry<Jour, Cours> jourCours : composerActionSimple.entrySet()) {
-            System.out.println("Jour: " + jourCours.getKey() + ", Valeur: " + jourCours.getValue().getValeur());
+        System.out.println("Historique des valeurs de l'action "
+                + getLibelle() + " par jour:");
+        for (Map.Entry<Jour, Cours> jourCours
+                : composerActionSimple.entrySet()) {
+            System.out.println("Jour: " + jourCours.getKey()
+                    + ", Valeur: " + jourCours.getValue().getValeur());
         }
     }
 }

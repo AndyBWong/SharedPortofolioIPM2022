@@ -7,38 +7,54 @@
 package tp04.metier;
 
 public class Jour {
-    //attributs
+    /**
+     * année de jour.
+     */
     private int annee;
+    /**
+     * numero de Jour.
+     */
     private int numJour;
+    /**
+     * mois du jour.
+     */
     private int mois;
-    //endregion
-
-    //constructeur
-    public Jour(int annee,int mois, int numJour){
+    /**
+     * Constructeur jour.
+     * @param annee
+     * @param mois
+     * @param numJour
+     */
+    public Jour(int annee,int mois, int numJour) {
         this.annee = annee;
         this.numJour = numJour;
         this.mois = mois;
     }
-    
-
-    //getters
+    /**
+     * Annee du jour.
+     * @return annee
+     */
     public int getAnnee() {
         return annee;
     }
-
+    /**
+     * num du jour.
+     * @return numJour
+     */
     public int getNumJour() {
         return numJour;
     }
-    
+    /**
+     * mois du jour.
+     * @return mois
+     */
     public int getMois() {
         return mois;
     }
     
-    
-
     @Override
     public String toString() {
-        return "Jour{" + "annee=" + annee + ", numJour=" + numJour + ", mois=" + mois + '}';
+        return "Jour{" + "annee=" + annee + ", numJour="
+                + numJour + ", mois=" + mois + '}';
     }
-  
 }

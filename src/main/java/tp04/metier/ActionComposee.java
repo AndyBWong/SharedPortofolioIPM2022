@@ -25,14 +25,15 @@ public class ActionComposee extends Action {
      */
     public ActionComposee(String libelle){
         super(libelle);
-        this.composition = new HashMap<ActionSimple,Pourcentage>();
+        this.composition = new HashMap<ActionSimple, Pourcentage>();
     }
-    
+    /**
+     * Obtenir la composition d'une Action simple.
+     * @return composition
+     */
     public HashMap<ActionSimple, Pourcentage> getComposition() {
         return composition;
     }
-    
-    
     /**
      * Cette méthode retourne la valeur pour un jour donné
      * d'une action composée.
@@ -41,7 +42,7 @@ public class ActionComposee extends Action {
      */
     @Override
     public float getValeur(Jour jour) {
-        float valeurComposition = 0;
+        float valeurComposition;
         float sommeValeurCompo = 0;
         for (Map.Entry<ActionSimple, Pourcentage> compositionChoisi
                 : composition.entrySet()) {
@@ -51,14 +52,14 @@ public class ActionComposee extends Action {
         System.out.println(sommeValeurCompo);
         return sommeValeurCompo;
     }
-    /**.
-     *enregistre le pourcentage d'une action composée en fonction d"une action
+    /**
+     * enregistre le pourcentage d'une action composée en fonction d"une action.
      * @param action
      * @param pourcentage
      * @return compo
      */
-    public HashMap<ActionSimple, Pourcentage>
-        enregistrerComp(ActionSimple action, float pourcentage){
+    public final HashMap<ActionSimple, Pourcentage>
+        enregistrerComp(final ActionSimple action, float pourcentage){
                     Pourcentage pourcentageAMettre
                             = new Pourcentage(pourcentage);
                     HashMap<ActionSimple, Pourcentage> compo =
@@ -92,7 +93,7 @@ public class ActionComposee extends Action {
                  * @return la valeur du cours actuel de l'action composée
                  */
                 @Override
-                public float valeurActuelle() {
+                public final float valeurActuelle() {
                     return -1;
                 }
 }
