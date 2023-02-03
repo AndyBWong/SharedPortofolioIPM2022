@@ -51,7 +51,7 @@ public class Jour {
     public int getMois() {
         return mois;
     }
-    
+
     @Override
     public String toString() {
         return "Jour{" + "annee=" + annee + ", numJour="

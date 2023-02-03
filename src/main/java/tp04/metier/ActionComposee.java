@@ -88,12 +88,19 @@ public class ActionComposee extends Action {
                     }
                     return compo;
                 }
+
                 /**
                  * Récupère la valeur du cours actuel de l'action composée.
                  * @return la valeur du cours actuel de l'action composée
                  */
                 @Override
                 public final float valeurActuelle() {
-                    return -1;
+                    float result = 0;
+                    for (Map.Entry<ActionSimple, Pourcentage> entry
+                            : composition.entrySet()) {
+                        ActionSimple as = entry.getKey();
+                        result += as.valeurActuelle();
+                    }
+                    return result;
                 }
 }

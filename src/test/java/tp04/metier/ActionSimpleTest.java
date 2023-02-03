@@ -20,7 +20,7 @@ public class ActionSimpleTest {
      * Jour qui pour lequel une action possède un cours.
      * Antérieur à la date du jour.
      */
-    private static final Jour jourExistant = new Jour(2022,7, 1) ;
+    private static final Jour jourExistant = new Jour(2022, 7, 1) ;
     
     /**
      * Année de l'Action simple

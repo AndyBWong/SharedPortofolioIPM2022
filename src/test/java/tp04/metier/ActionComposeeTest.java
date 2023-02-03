@@ -182,5 +182,23 @@ public class ActionComposeeTest {
         final boolean result = ac1.getComposition().containsKey(as2);
         Assertions.assertFalse(result, "as2 should not be in the Hashmap");
     }
+    
+    /**
+     * Test de la méthode valeurActuelleShouldPass.
+     */
+    @Test
+    public final void testValeurActuelleShouldPass() {
+        final ActionComposee ac1 = new ActionComposee("FranceTV");
+        final ActionSimple as1 = new ActionSimple("France 2");
+        final ActionSimple as2 = new ActionSimple("France 3");
+        float expectedResult = VALEUR_AS1 + VALEUR_AS2;
+        float result;
+        as1.enregistrerCours(JOUR_EXISTANT, VALEUR_AS1);
+        as2.enregistrerCours(JOUR_EXISTANT, VALEUR_AS2);
 
+        ac1.enregistrerComp(as1, POURCENTAGE_PASS1);
+        ac1.enregistrerComp(as2, POURCENTAGE_PASS2);
+        result = ac1.valeurActuelle();
+        Assertions.assertEquals(expectedResult, result);
+    }
 }
